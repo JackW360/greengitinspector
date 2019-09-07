@@ -1,0 +1,19 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "Web app that calculates the statistics of a github repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.infotech.monash.edu/fit2101-s2-2019/green/project.git"
+  },
+  "author": "Green",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^16.28.9",
+    "dotenv": "^8.1.0"
+  }
+}
