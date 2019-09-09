@@ -1,26 +1,93 @@
 //file for testing basic requests to github rest api
 
 //import Octokit from '@octokit/rest';
-const Octokit = require('@octokit/rest')
+const Octokit = require('@octokit/rest');
+const express = require('express');
+const superagent = require('superagent');
+const app = express();
+require('dotenv').config();
 
-require('dotenv').config()
+const port = 3000 || process.env.PORT;
 
+app.listen(port, ()=>{
+  console.log('listening at port ' + port)
+});
+
+app.use(express.static('WebContent/index'))
 
 // auth will change if registering app as github app
 const octokit = Octokit({
-    //auth: process.env.AUTH,
-    userAgent: 'myApp v1.2.3',
-    baseUrl: 'https://api.github.com'
+  auth: process.env.AUTH,
+  userAgent: 'GreenGitInspector v1.0.0',
+  baseUrl: 'https://api.github.com'
 })
 
+//routing
+app.get('/search', (request, response, next) =>{
+  //console.log(request);
+  //this will include retrieving all of the necessary info from github api
 
-octokit.request('GET https://github.com/login/oauth/authorize', {client_id: process.env.CLIENT_ID})
-  .then(results =>{
-    console.log(results)
-    
-  })
+  //console.log(request);
+  let body = {};
 
+  //retrieving info about the team members/contributors
+  octokit.repos.listContributors(request['query'])
+    .then(results =>{
 
+      let contributors = []
+      for (let i = 0; i < results['data'].length; i++){
+          contributors.push({
+              login: results['data'][i]['login'],
+              id: results['data'][i]['id'],
+              contributions: results['data'][i]['contributions']
+          });
+      };
+
+      body['contributors'] = contributors;
+      //console.log(contributors);
+      console.log(body);
+      response.send(body);
+    })
+  
+  //response.send(JSON.stringify(body));
+  //response.send(body);
+  
+});
+
+app.use(express.static('WebContent/index'))
+
+/*
+app.get('/callback', (request, response) =>{
+
+  const code = request['query']['code'];
+  console.log(code);
+
+  if (!code){
+    return response.send({
+      success: false,
+      message: 'There was no code!'
+    })
+  }
+  superagent
+    .post('https://github.com/login/oauth/access_token')
+    .send({ 
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
+      code: code,
+      redirect_uri: 'http://localhost:3000'
+    })
+    .set('accept', 'application/json')
+    .end((err, res) => {
+      //console.log(response)
+      // Calling the end function will send the request
+      //console.log(res);
+      const data = res.body;
+
+      console.log('data', data);
+      response.send();
+  });
+})
+*/
 
 /*
 octokit.paginate('GET /repos/:owner/:repo/commits', { owner: 'octokit', repo: 'rest.js'})
@@ -52,6 +119,7 @@ octokit.paginate('GET /repos/:owner/:repo/commits', { owner: 'octokit', repo: 'r
   })
 */
 
+/*
 function get_url_info(url){
 
     let base_url = url.slice(0, 19);
@@ -94,5 +162,5 @@ function list_members(data){
         })
 }
 
-
+*/
 //list_members(get_url_info('https://github.com/tensorflow/tensorflow'))

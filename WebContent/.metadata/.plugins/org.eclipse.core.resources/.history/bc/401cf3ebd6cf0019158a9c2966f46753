@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<script src="index.js"></script>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div class="search">
+			<h1 class="name">THE GREEN GIT INSPECTOR</h1>
+			<input id="search" type="text" placeholder="Search project url...">
+			<div id="button">
+				<button type="button" onclick="search()">hello</button>
+			</div>
+		</div>
+	</body>
+</html>
