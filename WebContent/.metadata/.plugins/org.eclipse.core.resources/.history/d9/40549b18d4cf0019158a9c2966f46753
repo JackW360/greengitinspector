@@ -1,3 +1,0 @@
-function search(){
-	document.getElementByClass("search").innerHTML = "lol";
-}

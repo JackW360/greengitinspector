@@ -1,4 +1,0 @@
-function search(){
-	var x = document.getElementById("search").innerHTML;
-	document.body.innerHTML = x;
-}
