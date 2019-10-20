@@ -10,8 +10,6 @@
   <title>The Green Git Inspector</title>
 
   <!-- Custom fonts for this template-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="index.css" rel="stylesheet" type="text/css">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -29,7 +27,7 @@
     <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
         <div class="sidebar-brand-text mx-3">The Green Git Inspector</div>
@@ -40,7 +38,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="/home">
+        <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -50,18 +48,8 @@
 
       <!-- Nav Item - Login -->
       <li class="nav-item">
-        <a class="nav-link" href="/help.html">
+        <a class="nav-link" href="help.ejs">
           <span>Help</span></a>
-      </li>
-
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Nav Item - Login -->
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">
-          <span>Logout</span></a>
       </li>
 
       <!-- Divider -->
@@ -97,11 +85,7 @@
                 <script src="webcontent.js"></script>
               <div class="input-group-append">
                 <button class="btn btn-success" type="button" onclick="search()">
-                  <span id="search_icon">
-                    <i class="fas fa-search fa-sm"></i>
-                  </span>
-                  <span id="searching_spinner">
-                  </span>
+                  <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
             </div>
@@ -137,7 +121,6 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <%=user.username %> </span>
-                <img src=<%=user.icon_url %> alt="user icon" style="width:50px;height:50px;" class="img-thumbnail">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -159,66 +142,45 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" onclick="toPdf()" role="button">
-              <i class="fas fa-download fa-sm text-white-50"></i>Generate Report</a>
-
+            <h1 class="h3 mb-0 text-gray-800">Help</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-download fa-sm text-white-50" onclick="toCsv()"></i>Generate Report</a>
           </div>
 
           <!-- Content Row -->
-          <div class="row" id="repoStats">
+          <div class="row">
 
-            <!-- Pie Chart (formatting with sample data) -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-success">Developer Code Distribution</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Tooltips?</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div id = "piechartholder" class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart" onclick='console.log(1)'></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Radar Chart (formatting with sample data) -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-success">Individual statistics</h6>
-
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div id="RadarText">Once a repository has been searched, click on a section of the pie chart to see individual statistics</div>
-                      <canvas id="radarChart"  width="200" height="200"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-                      <!-- Timetable (formatting with sample data) -->
-          <div class="card shadow mb-4">
+            <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-success">Timeline</h6>
+                <h6 class="m-0 font-weight-bold text-success">Website User Manual</h6>
               </div>
               <div class="card-body">
-                <div class="table-responsive" id="table"></div>
+                <div class="text-center">
+                <i>“For teachers and assignment markers, Who must fairly mark students based on their contributions,
+                  The Green Git Inspector Is a GitHub repository inspector, That provides easily accessible
+                  contribution statistics. Unlike the competitors, our product is user friendly and calculates
+                  all necessary information automatically.”</br></i>
+
+                <p></br>To use the inspector and gather the information of a certain project, you must enter the
+                  URL of the repository into the search bar above and hit the search button.</br>
+                  <img src="search.jpg">
+                  A pie chart will be displayed, which will show the top 7 contributors of the project
+                  and the overall distribution of workload, in terms of: additions, deletions, the number of issues
+                  resolved, and the time it takes to resolve issues. Hovering over each section of the piechart will
+                  display a textbox with this information.</br>
+                  <img src="piechart.jpg" height=350px width=300px></br>
+                  Clicking on each section of the piechart will show a radar chart representing the overall contribution
+                  percentage for each individual contributor.
+                  <img src="radar.jpg" height = 350px width=550px></br>
+                </br>
+                  Another feature our app provides is a timeline showing the progress made by each contributor,
+                  in the form of a stacked bar, showing the additions, deletions and commits.
+                  <img src="timeline.jpg" height=300px width=550px>
+                </br> Hovering over each stacked bar with your mouse will show which bar represents which
+                statistic (addition/deletion/commit).</br>
+                <img src="hovertimetable.jpg" height=100px width=350px>
+
+                </p>
+                </div>
               </div>
             </div>
         </div>
@@ -261,23 +223,15 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="/logout">Logout</a>
+          <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="https://www.gstatic.com/charts/loader.js"></script> 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Pdf plugin Js -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -290,7 +244,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
-  <script src="webcontent.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

@@ -3,6 +3,16 @@ body {
 	background-color: #98e979;
 }
 
+.white-box {
+    background-color: white;
+    color: white;
+		height: 400px;
+		width: 450px;
+		text-align: center;
+		margin-top: 70px;
+		margin-left: 200px;
+}
+
 .search {
 	float: left;
 	/*padding: 27vh 37vw;*/
@@ -40,10 +50,55 @@ body {
 	background-color: white;
 }
 
-#table{
-  padding: 1vh 25vw;
-}
-
 #piechart{
   padding: 1vh 30vw;
+}
+
+table {
+  display: block;
+  position: relative;
+  overflow: auto;
+  background-color: #ffffff;
+}
+
+table .bar{
+	background-color: #eaeaea;
+	color: #eaeaea;
+}
+
+table .stats{
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+table .login {
+  position: sticky;
+  left: 0vw;
+  z-index: 5;
+  background-color: #ffffff;
+  min-width: 10vw;
+}
+
+table .commit{
+  position: sticky;
+  left: 10vw;
+  z-index: 4;
+  background-color: #ffffff;
+  min-width: 5vw;
+}
+
+th, td{
+	min-width: 10vw;
+}
+
+.hover{
+	display: none;
+}
+
+.stats:hover .hover{
+	display: block;
+	color: black;
+	width: 3vw;
+	background-color: inherit;
 }

@@ -21,7 +21,7 @@ passport.use(
     new GithubStrategy({
 
         // github strategy options
-        callbackURL: '/login/github/callback',
+        callbackURL: 'https://greengitinspector.herokuapp.com/login/github/callback',
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET
 
